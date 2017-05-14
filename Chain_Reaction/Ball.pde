@@ -2,7 +2,7 @@ class Ball {
   
   float x;
   float y;
-  float rad;
+  float rad;//this is actually the diameter
   color c;
   float dx;
   float dy;
@@ -27,7 +27,8 @@ class Ball {
    y = y+dy;
    bounce();
  }
-   
+
+ //if ball reaches border, bounce
  void bounce() {
    if (checkCollisionX()) { 
      dx = -dx;
@@ -38,15 +39,26 @@ class Ball {
  }
  
  boolean checkCollisionX() {
-   if (x > 600-rad || x < 0+rad) return true;
+   if (x > 600-rad/2 || x < 0+rad/2) return true;
    return false;
  }
  
  boolean checkCollisionY() {
-   if (y > 600-rad || y < 0+rad) return true;
+   if (y > 600-rad/2 || y < 0+rad/2) return true;
    return false; 
  }
-   
-}
-  
+
+//balls grow then shrink
+/*
+void pop() {
+  dx = 0;
+  dy = 0;
+  while (rad < 50) {
+    rad = rad+1;
+  }
+  while (rad > 50) {
+    rad = rad-1;
+  }
+}*/
+}  
  
