@@ -17,8 +17,8 @@ class Ball {
    rad = 20;
    x = random((width-width/3)) + rad;
    y = random((height-width/3)) + rad;
-   dx = random(10)-3;
-   dy = random(10)-3;
+   dx = random(5)-3;
+   dy = random(5)-3;
  }
  
  void move() {
