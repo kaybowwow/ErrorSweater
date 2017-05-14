@@ -24,22 +24,17 @@ void draw() {
 // then they bounce off of each other
 //the balls kind of bounce , i don't know how to implement this :(
 void collision() {
-  for (int x = 0 ; x < balls.length-1 ; x ++) {
-      int y = (int)(x + random(balls.length-x-1));    
-      float tmpx = balls[x].x - balls[y].x;
-      float tmpy = balls[x].y - balls[y].y;
-      float dist = sqrt(tmpx*tmpx + tmpy*tmpy);
-      if (dist < balls[x].rad/2 + balls[y].rad/2) {
-        /*
-        if (reactionStarted) {
-          balls[x].pop();
-          balls[y].pop();
-        }*/
-          balls[x].dx = -balls[x].dx;
-          balls[x].dy = -balls[x].dy;
-          balls[y].dx = -balls[y].dx;
-          balls[y].dy = -balls[y].dy;
-      }
+  if (reactionStarted) {
+    for (int x = 0 ; x < balls.length-1 ; x ++) {
+        int y = (int)(x + random(balls.length-x-1));    
+        float tmpx = balls[x].x - balls[y].x;
+        float tmpy = balls[x].y - balls[y].y;
+        float dist = sqrt(tmpx*tmpx + tmpy*tmpy);
+        if (dist < balls[x].rad/2 + balls[y].rad/2) {
+          pop(balls[x]);
+          pop(balls[y]);
+        }
+    }
   }
 }
 

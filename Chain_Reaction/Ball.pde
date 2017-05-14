@@ -47,18 +47,5 @@ class Ball {
    if (y > 600-rad/2 || y < 0+rad/2) return true;
    return false; 
  }
-
-//balls grow then shrink
-/*
-void pop() {
-  dx = 0;
-  dy = 0;
-  while (rad < 50) {
-    rad = rad+1;
-  }
-  while (rad > 50) {
-    rad = rad-1;
-  }
-}*/
 }  
  
