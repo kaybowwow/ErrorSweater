@@ -14,11 +14,11 @@ class Ball {
    float g = random(256);
    float b = random(256);
    c = color(r,g,b);
-   rad = 10;
-   x = random((width-r)+r/2);
-   y = random((height-r)+r/2);
-   dx = random(10)-5;
-   dy = random(10)-5;
+   rad = 20;
+   x = random((width-width/3)) + rad;
+   y = random((height-width/3)) + rad;
+   dx = random(10)-3;
+   dy = random(10)-3;
  }
  
  void move() {
@@ -29,14 +29,22 @@ class Ball {
  }
    
  void bounce() {
-   if (x > 600-rad || x < 0+rad) {
+   if (checkCollisionX()) { 
      dx = -dx;
-     dy = -dy;
    }
-   if (y > 600-rad|| y < 0+rad) {
-     dx = -dx;  
+   if (checkCollisionY()) { 
      dy = -dy;
-   }
+   }     
+ }
+ 
+ boolean checkCollisionX() {
+   if (x > 600-rad || x < 0+rad) return true;
+   return false;
+ }
+ 
+ boolean checkCollisionY() {
+   if (y > 600-rad || y < 0+rad) return true;
+   return false; 
  }
    
 }
