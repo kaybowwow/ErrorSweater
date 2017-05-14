@@ -2,11 +2,11 @@ class Ball {
   
   float x;
   float y;
-  float rad;//this is actually the diameter
+  float rad;
   color c;
   float dx;
   float dy;
-  int state;
+  int state; // 0 if not part of the reaction, 1 if part of the reaction
   boolean expand = false;
   
  Ball() {
