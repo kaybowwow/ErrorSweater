@@ -1,16 +1,15 @@
 class Ball {
   
-  float x;
-  float y;
-  float rad;
-  color c;
-  float dx;
-  float dy;
+  float x; //xcor
+  float y; //ycor
+  float rad; //radius
+  color c; //color
+  float dx; //delta x
+  float dy; //delta y
   int state; // 0 if not part of the reaction, 1 if part of the reaction
-  boolean expand = false;
+  boolean expand = false; //if true, then ball is expanding and must die
   
  Ball() {
-  
    float r = random(256);
    float g = random(256);
    float b = random(256);
@@ -44,6 +43,7 @@ class Ball {
  }
  
  void move() {
+   //if ball is expanding, then it must die
    if (expand == true) {
      die();
    }
@@ -51,15 +51,17 @@ class Ball {
      expand();
    }
    ellipse(x,y,rad,rad);
-   fill(c);
-   x = x+dx;
-   y = y+dy;
+   fill(c); //fill the ball with the color of value c
+   x = x+dx; //move in x-direction
+   y = y+dy; //move in y-direction
    bounce();
  }
 
 void expand() {
+  //ball stops moving
   dx = 0;
   dy = 0;
+  //expand
   if (rad > 0 && rad < 70) {
     rad += 1; 
   }
@@ -72,6 +74,7 @@ void die() {
   if (rad > 0) {
     rad -= 1; 
   }
+  //necessary so that a "dead" ball/point wont trigger expansion
   if (rad <= 0) {
     state = 0;
   }
@@ -87,16 +90,19 @@ void die() {
    }     
  }
  
+ //checks collision of ball with left and right borders
  boolean checkCollisionX() {
    if (x > 600-rad/2 || x < 0+rad/2) return true;
    return false;
  }
  
+ //checks collision of ball with top and bottom borders
  boolean checkCollisionY() {
    if (y > 600-rad/2 || y < 0+rad/2) return true;
    return false; 
  }
  
+ //calculates distance between 2 balls
  float distance (Ball ball) {
     return sqrt ( pow ((x-ball.getX()), 2) + pow ((y-ball.getY()), 2)); 
  } 
