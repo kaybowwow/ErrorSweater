@@ -16,8 +16,8 @@ class Ball {
    float b = random(256);
    c = color(r,g,b);
    rad = 20;
-   x = random((width-width/3)) + rad;
-   y = random((height-width/3)) + rad;
+   x = random((width-width/2)) + r;
+   y = random((height-height/2)) + r;
    dx = random(5)-3;
    dy = random(5)-3;
    state = 0;
@@ -36,7 +36,7 @@ class Ball {
   return y; 
  }
  float getRad() {
-  return rad; 
+  return rad/2; 
  }
  void setXY(float inputX, float inputY) {
   x = inputX;
@@ -44,13 +44,14 @@ class Ball {
  }
  
  void move() {
-   if (expand = true) {
+   if (expand == true) {
      die();
    }
    else if (state == 1) {
      expand();
    }
    ellipse(x,y,rad,rad);
+   fill(c);
    x = x+dx;
    y = y+dy;
    bounce();
@@ -69,7 +70,10 @@ void expand() {
 
 void die() {
   if (rad > 0) {
-    rad -= 0.1; 
+    rad -= 1; 
+  }
+  if (rad <= 0) {
+    state = 0;
   }
 }
 
@@ -95,7 +99,6 @@ void die() {
  
  float distance (Ball ball) {
     return sqrt ( pow ((x-ball.getX()), 2) + pow ((y-ball.getY()), 2)); 
- }
- 
+ } 
 }  
  
